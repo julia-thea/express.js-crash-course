@@ -2,7 +2,7 @@
   "name": "express.js-crash-course",
   "version": "1.0.0",
   "description": "First attempt at learning Exress.js framework by following this tutorial: <br> https://www.youtube.com/watch?v=gnsO8-xJ8rs",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/JuliaTe/express.js-crash-course#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1"
   },
   "devDependencies": {}
