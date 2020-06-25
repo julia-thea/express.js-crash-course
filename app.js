@@ -1,22 +1,16 @@
 const express = require('express');
+const uuid = require('uuid');
 const bodyParser = require('body-parser');
 const path = require('path');
-const members = require('./Members')
-
 const app = express();
+const logger = require('./middlewear/logger');
 
-// Middlewear
-// const logger = function(req, res, next){
-//   console.log('Logging... ');
-//   next();
-// }
-
+// Initializing middlewear
 // app.use(logger);
 
-// Gets all members
-app.get('/api/members', (req, res) => {
-  res.json(members);
-});
+// Body parser middlewear
+app.use(express.json());
+app.use(express.urlencoded({ extended: false}))
 
 // View Engine
 app.set('view engine', 'ejs');
@@ -29,9 +23,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 // Set static path
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.get('/', (req, res) => {
-
-});
+// Members API routes
+app.use('/api/members', require('./routes/api/members'));
 
 const PORT = process.env.PORT || 5000;
 
