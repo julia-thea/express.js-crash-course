@@ -30,7 +30,7 @@ if(!newMember.name || !newMember.email) {
 }
 
 members.push(newMember);
-res.json(members);
+res.redirect('/');
 
 });
 

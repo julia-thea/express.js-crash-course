@@ -2,19 +2,30 @@ const express = require('express');
 const uuid = require('uuid');
 const bodyParser = require('body-parser');
 const path = require('path');
+const exphbs = require('express-handlebars');
 const app = express();
 const logger = require('./middlewear/logger');
+const members = require('./Members');
 
 // Initializing middlewear
 // app.use(logger);
+
+// Handlebars middlewear (Views engine)
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 // Body parser middlewear
 app.use(express.json());
 app.use(express.urlencoded({ extended: false}))
 
-// View Engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'))
+//Home page route
+// Homepage Route
+app.get('/', (req, res) =>
+  res.render('index', {
+    title: 'Member App',
+    members
+  })
+);
 
 // Adding middlewear for body-parser
 app.use(bodyParser.json()); // Handles json content
